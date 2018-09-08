@@ -8,6 +8,7 @@ The demo app initially loads 10 entities. After that, directly connected nodes a
 ![screenshot of the gauge](https://github.com/sheldonyss/dev-challenge/blob/master/screenshot/chrome_2018-09-08_23-09-43.png?raw=true)
 
 ## Tech stack
+Main consideration is the time constraint. So 
 -	Asp.net core web API
 -	SQL server
 -	Swagger
