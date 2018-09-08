@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div fxLayout="column" style="width:100%;height:100%;">
+  <div fxFlex="20px" fxlayout="row" style="height:20px" id="ledgend-div">
+    <div class="ledgend" *ngFor="let le of legendName" [style.background-color]="le.color">
+      {{le.name}}
+    </div>
+    <div *ngIf="busy">Loading...</div>
+  </div>
+  <div fxFlex #container style="width:100%;height:100%;">
+
+  </div>
+</div>
