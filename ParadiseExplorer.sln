@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParadiseExplorer", "ParadiseExplorer\ParadiseExplorer.csproj", "{09F8B366-20B9-4B69-9538-5839C4F18D32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParadiseExplorer", "ParadiseExplorer\ParadiseExplorer.csproj", "{09F8B366-20B9-4B69-9538-5839C4F18D32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParadiseMongoClient", "ParadiseMongoClient\ParadiseMongoClient.csproj", "{8B0AB81F-BAA2-40BD-B07F-31B31DD9AF1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{09F8B366-20B9-4B69-9538-5839C4F18D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F8B366-20B9-4B69-9538-5839C4F18D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F8B366-20B9-4B69-9538-5839C4F18D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B0AB81F-BAA2-40BD-B07F-31B31DD9AF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B0AB81F-BAA2-40BD-B07F-31B31DD9AF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B0AB81F-BAA2-40BD-B07F-31B31DD9AF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B0AB81F-BAA2-40BD-B07F-31B31DD9AF1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

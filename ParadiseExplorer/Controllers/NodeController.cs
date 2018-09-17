@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ParadiseExplorer.Domains;
 using ParadiseExplorer.Models;
+using ParadiseExplorer.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,12 +15,11 @@ namespace ParadiseExplorer.Controllers
     [Route("api/[controller]")]
     public class NodeController : Controller
     {
-        private readonly ParadiseService _service;
+        private readonly IParadiseService _service;
         private readonly IMapper _mapper;
         // GET: api/<controller>
-        public NodeController(ParadiseService service)
+        public NodeController(IParadiseService service)
         {
-
             _service = service;
         }
         [HttpGet("get-entity")]

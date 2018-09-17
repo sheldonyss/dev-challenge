@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using ParadiseExplorer.Domains;
 using ParadiseExplorer.Models;
 
-namespace ParadiseExplorer
+namespace ParadiseExplorer.Services
 {
-    public class ParadiseService
+    public class SqlParadiseService : IParadiseService
     {
         private readonly ParadiseContext _context;
         private readonly IMapper _mapper;
 
-        private enum Direction
-        {
-            FromCaller,
-            ToCaller
-        }
+  
+        
 
-        public ParadiseService(ParadiseContext context, IMapper mapper)
+        public SqlParadiseService(ParadiseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -45,23 +41,6 @@ namespace ParadiseExplorer
                 Page = page,
                 TotalCount = total
             };
-            //pageSize = Math.Min(pageSize, 100);
-            //var total = _context.Entity.Count();
-            //var skipCount = Math.Max(0, (page - 1) * pageSize);
-
-            //var entQuery = _context.Entity.Where(e => !string.IsNullOrEmpty(e.Name)).OrderBy(e => e.Name).Skip(skipCount).Take(pageSize).Select(e => e.NodeId);
-            //var edgeNodes = new List<EdgeNodeDto>();
-            //foreach (var entNodeId in entQuery)
-            //{
-            //    edgeNodes.AddRange(ExpandNode(entNodeId));
-            //}
-
-            //return new PagedResult<EdgeNodeDto>()
-            //{
-            //    Items = edgeNodes,
-            //    Page = page,
-            //    TotalCount = total
-            //};
         }
 
         public PagedResult<EdgeNodeDto> GetOfficer(int page, int pageSize)
@@ -91,15 +70,15 @@ namespace ParadiseExplorer
             var results = new List<EdgeNodeDto>();
             var outgoingEdges = _context.Edges.Where(e => e.StartId == nodeId);
             var incommingEdges = _context.Edges.Where(e => e.EndId == nodeId);
-            results.AddRange(GetConnectedNodes(nodeId, outgoingEdges, Direction.FromCaller));
-            results.AddRange(GetConnectedNodes(nodeId, incommingEdges, Direction.ToCaller));
+            results.AddRange(GetConnectedNodes(nodeId, outgoingEdges, EdgeDirection.FromCaller));
+            results.AddRange(GetConnectedNodes(nodeId, incommingEdges, EdgeDirection.ToCaller));
 
             //var incomingEdges = _context.Edges.Where(e => e.EndId == nodeId);
 
             return results;
         }
 
-        private List<EdgeNodeDto> GetConnectedNodes(int nodeId, IEnumerable<Edges> edges, Direction dir)
+        private List<EdgeNodeDto> GetConnectedNodes(int nodeId, IEnumerable<Edges> edges, EdgeDirection dir)
         {
             var results = new List<EdgeNodeDto>();
             foreach (var pair in edges.GroupBy(e => e.EdgeType, l => l))
@@ -123,11 +102,11 @@ namespace ParadiseExplorer
             return results;
         }
 
-        private List<EdgeNodeDto> GetOfficer(int nodeId, List<Edges> edges, Direction dir)
+        private List<EdgeNodeDto> GetOfficer(int nodeId, List<Edges> edges, EdgeDirection dir)
         {
             var query = from E in edges
                         join Off in _context.Officer
-                            on (dir == Direction.FromCaller ? E.EndId : E.StartId) equals Off.NodeId
+                            on (dir == EdgeDirection.FromCaller ? E.EndId : E.StartId) equals Off.NodeId
                         select new
                         {
                             Offcier = Off,
@@ -143,11 +122,11 @@ namespace ParadiseExplorer
             }).ToList();
         }
 
-        private List<EdgeNodeDto> GetAddresses(int nodeId, List<Edges> edges, Direction dir)
+        private List<EdgeNodeDto> GetAddresses(int nodeId, List<Edges> edges, EdgeDirection dir)
         {
             var query = from E in edges
                         join A in _context.Address
-                            on (dir == Direction.FromCaller ? E.EndId : E.StartId) equals A.NodeId
+                            on (dir == EdgeDirection.FromCaller ? E.EndId : E.StartId) equals A.NodeId
                         select new
                         {
                             Addr = A,
@@ -161,11 +140,11 @@ namespace ParadiseExplorer
 
         }
 
-        private List<EdgeNodeDto> GetSameNameAs(int nodeId, List<Edges> edges, Direction dir)
+        private List<EdgeNodeDto> GetSameNameAs(int nodeId, List<Edges> edges, EdgeDirection dir)
         {
             var query = from E in edges
                         join ent in _context.Entity
-                            on (dir == Direction.FromCaller ? E.EndId : E.StartId) equals ent.NodeId
+                            on (dir == EdgeDirection.FromCaller ? E.EndId : E.StartId) equals ent.NodeId
                         select new
                         {
                             Entity = ent,

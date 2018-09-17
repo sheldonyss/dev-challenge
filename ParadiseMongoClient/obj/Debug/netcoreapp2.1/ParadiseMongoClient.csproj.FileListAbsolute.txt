@@ -1,0 +1,11 @@
+D:\github\dev-challenge\ParadiseMongoClient\bin\Debug\netcoreapp2.1\ParadiseMongoClient.deps.json
+D:\github\dev-challenge\ParadiseMongoClient\bin\Debug\netcoreapp2.1\ParadiseMongoClient.runtimeconfig.json
+D:\github\dev-challenge\ParadiseMongoClient\bin\Debug\netcoreapp2.1\ParadiseMongoClient.runtimeconfig.dev.json
+D:\github\dev-challenge\ParadiseMongoClient\bin\Debug\netcoreapp2.1\ParadiseMongoClient.dll
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.csprojAssemblyReference.cache
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.csproj.CoreCompileInputs.cache
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.AssemblyInfoInputs.cache
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.AssemblyInfo.cs
+D:\github\dev-challenge\ParadiseMongoClient\bin\Debug\netcoreapp2.1\ParadiseMongoClient.pdb
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.dll
+D:\github\dev-challenge\ParadiseMongoClient\obj\Debug\netcoreapp2.1\ParadiseMongoClient.pdb

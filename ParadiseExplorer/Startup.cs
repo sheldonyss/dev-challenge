@@ -13,9 +13,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using NJsonSchema;
 using NSwag.AspNetCore;
 using ParadiseExplorer.Domains;
+using ParadiseExplorer.Profiles;
+using ParadiseExplorer.Services;
 
 //using ParadiseExplorer.Domains;
 
@@ -31,6 +34,7 @@ namespace ParadiseExplorer
             CorsOrigins = configuration["App:CorsOrigins"]
                 .Split(",", StringSplitOptions.RemoveEmptyEntries)
                 .ToArray();
+            BsonMapping.MapModels();
         }
 
         public IConfiguration Configuration { get; }
@@ -54,7 +58,9 @@ namespace ParadiseExplorer
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var connection = @"Server=localhost;Database=Paradise;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<ParadiseContext>(options => options.UseSqlServer(connection));
-            services.AddTransient<ParadiseService>();
+            services.AddTransient<IMongoClient, MongoClient>(provider => new MongoClient("mongodb://localhost:27017"));
+            //services.AddTransient<IParadiseService, MongoParadiseService>();
+            services.AddTransient<IParadiseService, SqlParadiseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
